@@ -1,0 +1,111 @@
+#include <iostream>
+#include <string>
+#include <set>
+#include <map>
+
+using namespace std;
+
+#include "room.h"
+#include "object.h"
+
+
+
+
+void Room::setname(string _name)
+{
+    name=_name;
+}
+
+void Room::setdescription(string _desc)
+{
+    description=_desc;
+}
+
+string Room::getname()
+{
+    return name;
+}
+
+string Room::getdescription()
+{
+    return description;
+}
+
+void Room::link(string direction, Room *r)
+{
+
+    //Room d = *r;
+
+    Map.insert (pair<string, Room*>(direction, r) );
+
+
+
+
+}
+
+//void Room::EXAMINE(Room *r)
+//{
+//    cout << r->description <<endl;
+//}
+
+Room* Room::getlinked(string direction)
+{
+    map<string, Room*>::iterator links;
+    string c=getname();
+    links=Map.find(direction);
+    /*
+    if(links !=Map->end())
+    {   Room * Best = new Room;
+        Best=links->second;
+        return Best;}
+    else
+    {
+        Room * Null = new Room;
+        Null->setname ("Null");
+        return Room Null;}
+        */
+
+        return links->second;
+}
+
+void Room::printlinked()
+{
+
+    map<string,Room*>::iterator print;
+        for(print = Map.begin(); print != Map.end(); ++print)
+    {
+
+        string a=print->second->getname();
+        cout << "The " << a << " is to the "
+             << print->first << "." << endl;
+    }
+
+
+
+}
+
+void Room::enter(Object *a)
+{
+    items.insert(a);
+}
+
+void Room::leave(Object *a)
+{
+    items.erase(a);
+}
+
+void Room::printObjects()
+{
+    cout << "Objects in this room:" << endl;
+
+    set<Object*>::iterator it;
+    for(it = items.begin(); it != items.end(); ++it)
+    {
+
+        cout << (*it)->getname() << endl;
+        if(it==items.end())
+        {
+            cout <<"None." << endl;
+        }
+    }
+}
