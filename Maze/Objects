@@ -1,0 +1,41 @@
+#include <iostream>
+#include <string>
+#include <set>
+#include <map>
+
+using namespace std;
+
+#include "room.h"
+#include "object.h"
+
+
+
+
+string Laundary::EXAMINE()
+{
+
+    Found=true;
+    return description;
+
+
+}
+
+string Robot::EXAMINE()
+{
+    return description;
+
+}
+/*void Object::Move(string Direction)
+{
+
+    Room * b=cur_room->getlinked(Direction);
+
+    if (b->getname()!="Null")
+    cur_room = cur_room->getlinked(Direction);
+    else
+    {
+        cout <<"That is an invalid move." << endl;
+    }
+
+
+}*/
